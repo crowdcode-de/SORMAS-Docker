@@ -3,7 +3,7 @@ version: '2.3'
 services:
   base-sormas:
     restart: unless-stopped
-    image: hzibraunschweig/sormas-application:2.18.0-rc5
+    image: hzibraunschweig/sormas-application:${SORMAS_DOCKER_VERSION}
     environment:
       - SORMAS_POSTGRES_USER=${SORMAS_POSTGRES_USER}
       - SORMAS_POSTGRES_PASSWORD=${SORMAS_POSTGRES_PASSWORD}
@@ -49,7 +49,7 @@ services:
     labels:
       - autoheal=true
     command: -c 'config_file=/etc/postgresql/postgresql.conf'
-    image: hzibraunschweig/sormas-postgres:2.18.0-rc5
+    image: hzibraunschweig/sormas-postgres:${SORMAS_DOCKER_VERSION}
     environment:
       - POSTGRES_PASSWORD=${SORMAS_POSTGRES_PASSWORD}
       - DB_NAME=${DB_NAME}
@@ -71,7 +71,7 @@ services:
     labels:
       - autoheal=true
     command: -c 'config_file=/etc/postgresql/postgresql.conf'
-    image: hzibraunschweig/keycloak-postgres:2.18.0-rc5
+    image: hzibraunschweig/keycloak-postgres:${SORMAS_DOCKER_VERSION}
     environment:
       - POSTGRES_PASSWORD=${KEYCLOAK_DB_PASSWORD}
       - POSTGRES_USER=${KEYCLOAK_DB_USER}
@@ -89,7 +89,7 @@ services:
 
   base-pg_dump:
     restart: unless-stopped
-    image: hzibraunschweig/sormas-pg-dump:2.18.0-rc5
+    image: hzibraunschweig/sormas-pg-dump:${SORMAS_DOCKER_VERSION}
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -108,7 +108,7 @@ services:
     restart: unless-stopped
     labels:
       - autoheal=true
-    image: hzibraunschweig/sormas-apache2:2.18.0-rc5
+    image: hzibraunschweig/sormas-apache2:${SORMAS_DOCKER_VERSION}
     environment:
       - SORMAS_SERVER_URL=${SORMAS_SERVER_URL}
       - TZ=${TZ}
@@ -149,7 +149,7 @@ services:
 
   base-letsencrypt:
     restart: unless-stopped
-    image: hzibraunschweig/sormas-letsencrypt:2.18.0-rc5
+    image: hzibraunschweig/sormas-letsencrypt:${SORMAS_DOCKER_VERSION}
     environment:
       - PUID=1000
       - PGID=1000
@@ -172,7 +172,7 @@ services:
     restart: unless-stopped
     labels:
       - autoheal=true
-    image: hzibraunschweig/sormas-keycloak:2.18.0-rc5
+    image: hzibraunschweig/sormas-keycloak:${SORMAS_DOCKER_VERSION}
     environment:
       - KEYCLOAK_USER=${KEYCLOAK_ADMIN_USER}
       - KEYCLOAK_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
